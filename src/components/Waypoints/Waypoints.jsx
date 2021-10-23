@@ -1,7 +1,10 @@
-const Waypoints = () => (
+const Waypoints = ({ list }) => (
   <div>
+    <h1>Route Builder</h1>
     <ul>
-      <li>Waypoint 1</li>
+      {list.map((entry, index) => (
+        <li>Waypoint {index + 1}</li>
+      ))}
     </ul>
   </div>
 );

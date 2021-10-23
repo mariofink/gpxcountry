@@ -18,6 +18,7 @@ function App() {
             onClick={(latlng) =>
               setWaypoints((prevWaypoints) => [...prevWaypoints, latlng])
             }
+            waypoints={waypoints}
           />
         </div>
       </div>

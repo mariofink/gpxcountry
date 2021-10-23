@@ -10,7 +10,7 @@ function App() {
           <Waypoints />
         </div>
         <div className="col-span-3">
-          <Map />
+          <Map lat="50.5238" lng="10.0204" />
         </div>
       </div>
     </div>

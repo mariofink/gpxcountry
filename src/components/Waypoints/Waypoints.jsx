@@ -1,4 +1,5 @@
 import { BinIcon, BurgerIcon } from "../Icons/Icons";
+import { createExport } from "../../utils/gpx";
 
 const Waypoints = ({ list, onRemove }) => (
   <div className="flex flex-col justify-between bg-gray-700 text-white p-4">
@@ -22,12 +23,14 @@ const Waypoints = ({ list, onRemove }) => (
         </li>
       ))}
     </ul>
-    <button
+    <a
+      href={createExport(list)}
+      download="MyRoute.gpx"
       className="w-full text-sm font-bold bg-green-500 text-gray-900 py-3 px-4 rounded-lg hover:bg-green-300 hover:text-gray-700"
       type="button"
     >
       Download your Route
-    </button>
+    </a>
   </div>
 );
 export default Waypoints;

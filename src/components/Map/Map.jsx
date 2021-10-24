@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
-import { map, tileLayer, circleMarker, LayerGroup } from "leaflet";
+import { map, tileLayer, marker, LayerGroup, divIcon } from "leaflet";
 
 const Map = ({ lat, lng, onClick, waypoints }) => {
   const osMap = useRef(null);
@@ -20,10 +20,17 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
   }, []);
   useEffect(() => {
     markersLayer.current.clearLayers();
-    waypoints.map((waypoint) => {
-      console.log("add marker", waypoint);
-      const marker = circleMarker([waypoint.lat, waypoint.lng]);
-      markersLayer.current.addLayer(marker);
+    waypoints.map((waypoint, index) => {
+      const markerIcon = divIcon({
+        className: "map-marker text-white bg-gray-700",
+        iconSize: [20, 20],
+        html: `<span>${index + 1}</span>`,
+      });
+      const mapMarker = marker([waypoint.lat, waypoint.lng], {
+        icon: markerIcon,
+        draggable: true,
+      });
+      markersLayer.current.addLayer(mapMarker);
     });
   }, [waypoints]);
   return <div id="leafletmap" className="h-full"></div>;

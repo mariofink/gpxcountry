@@ -6,7 +6,7 @@ import Waypoints from "./components/Waypoints/Waypoints";
 function App() {
   const [waypoints, setWaypoints] = useState([]);
   return (
-    <div className="container">
+    <div>
       <div className="grid grid-cols-4 h-screen">
         <Waypoints
           list={waypoints}

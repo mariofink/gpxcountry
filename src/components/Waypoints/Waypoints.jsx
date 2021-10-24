@@ -27,7 +27,7 @@ const Waypoints = ({ list, onRemove }) => (
       <a
         href={createExport(list)}
         download="MyRoute.gpx"
-        className="w-full text-sm font-bold bg-green-500 text-gray-900 py-3 px-4 rounded-lg hover:bg-green-300 hover:text-gray-700"
+        className="w-full text-center font-bold bg-green-500 text-gray-900 py-3 px-4 rounded-lg hover:bg-green-300 hover:text-gray-700"
         type="button"
       >
         Download your Route

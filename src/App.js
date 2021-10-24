@@ -8,9 +8,7 @@ function App() {
   return (
     <div className="container">
       <div className="grid grid-cols-4 h-screen">
-        <div className="bg-gray-700">
-          <Waypoints list={waypoints} />
-        </div>
+        <Waypoints list={waypoints} />
         <div className="col-span-3">
           <Map
             lat="50.5238"

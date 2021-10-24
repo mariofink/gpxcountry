@@ -8,7 +8,14 @@ function App() {
   return (
     <div className="container">
       <div className="grid grid-cols-4 h-screen">
-        <Waypoints list={waypoints} />
+        <Waypoints
+          list={waypoints}
+          onRemove={(i) =>
+            setWaypoints((prevWaypoints) => {
+              return prevWaypoints.filter((item, index) => index !== i);
+            })
+          }
+        />
         <div className="col-span-3">
           <Map
             lat="50.5238"

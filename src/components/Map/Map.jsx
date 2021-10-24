@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
-import { map, tileLayer, marker, LayerGroup, divIcon } from "leaflet";
+import { map, tileLayer, marker, LayerGroup, divIcon, polyline } from "leaflet";
 
 const Map = ({ lat, lng, onClick, waypoints }) => {
   const osMap = useRef(null);
   const markersLayer = useRef(null);
+  // init map
   useEffect(() => {
     osMap.current = map("leafletmap").setView([lat, lng], 13);
     markersLayer.current = new LayerGroup();
@@ -18,6 +19,7 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
       onClick(e.latlng);
     });
   }, []);
+  // update map
   useEffect(() => {
     markersLayer.current.clearLayers();
     waypoints.map((waypoint, index) => {
@@ -32,6 +34,9 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
       });
       markersLayer.current.addLayer(mapMarker);
     });
+    if (waypoints.length > 1) {
+      polyline(waypoints, { color: "#1086e8", weight: 6 }).addTo(osMap.current);
+    }
   }, [waypoints]);
   return <div id="leafletmap" className="h-full"></div>;
 };

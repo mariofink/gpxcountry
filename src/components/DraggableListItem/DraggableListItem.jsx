@@ -1,33 +1,32 @@
+import { useRef } from "react";
+
 let dragSource;
 
-function handleDragStart(e, index) {
-  e.nativeEvent.dataTransfer.effectAllowed = "move";
-  // console.log("Drag Start", e, index);
-  dragSource = index;
-}
-
-function handleDragOver(e) {
-  if (e.nativeEvent.preventDefault) {
-    e.nativeEvent.preventDefault(); // Allow dropping.
-  }
-}
-
-function handleDragLeave(e) {
-  // console.log("Drag Leave", e);
-}
-
-function handleDrop(e, index, callback) {
-  console.log("DROP!", index, e);
-  callback({ source: dragSource, target: index });
-}
-
-function handleDragEnd(e) {
-  // console.log("Drag End", e);
-}
-
 const DraggableListItem = ({ children, index, onDrop }) => {
+  const liElement = useRef(null);
+  const handleDragStart = (e, index) => {
+    e.nativeEvent.dataTransfer.effectAllowed = "move";
+    dragSource = index;
+  };
+  const handleDragOver = (e) => {
+    if (e.nativeEvent.preventDefault) {
+      e.nativeEvent.preventDefault(); // Allow dropping.
+    }
+    liElement.current.classList.add("bg-green-500");
+  };
+  const handleDragLeave = () => {
+    liElement.current.classList.remove("bg-green-500");
+  };
+  const handleDragEnd = () => {
+    liElement.current.classList.remove("bg-green-500");
+  };
+  const handleDrop = (e, index, callback) => {
+    callback({ source: dragSource, target: index });
+    liElement.current.classList.remove("bg-green-500");
+  };
   return (
     <li
+      ref={liElement}
       className="leading-10 font-bold flex gap-2"
       draggable="true"
       onDragStart={(e) => handleDragStart(e, index)}
@@ -36,7 +35,7 @@ const DraggableListItem = ({ children, index, onDrop }) => {
       onDrop={(e) => handleDrop(e, index, onDrop)}
       onDragEnd={handleDragEnd}
     >
-      {index} {children}
+      {children}
     </li>
   );
 };

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Waypoints renders 1`] = `
+<div
+  className="flex flex-col justify-between bg-gray-700 text-white p-4"
+>
+  <h1
+    className="text-2xl font-bold border-b-4 border-gray-500 my-2 py-2"
+  >
+    Route Builder
+  </h1>
+  <ul
+    className="py-8 flex-auto"
+  />
+</div>
+`;

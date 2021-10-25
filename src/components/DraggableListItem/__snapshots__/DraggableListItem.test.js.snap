@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraggableListItem renders 1`] = `
+<ul>
+  <li
+    className="leading-10 font-bold flex gap-2"
+    draggable="true"
+    onDragEnd={[Function]}
+    onDragLeave={[Function]}
+    onDragOver={[Function]}
+    onDragStart={[Function]}
+    onDrop={[Function]}
+  >
+    My item
+  </li>
+</ul>
+`;

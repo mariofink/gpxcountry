@@ -8,7 +8,8 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
   const lineLayer = useRef(null);
   // init map
   useEffect(() => {
-    osMap.current = map("leafletmap").setView([lat, lng], 13);
+    // Setting tap to false to fix Safari issues (see: https://github.com/Leaflet/Leaflet/issues/7255)
+    osMap.current = map("leafletmap", { tap: false }).setView([lat, lng], 13);
     markersLayer.current = new LayerGroup();
     markersLayer.current.addTo(osMap.current);
     lineLayer.current = new LayerGroup();
@@ -34,7 +35,6 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
       });
       const mapMarker = marker([waypoint.lat, waypoint.lng], {
         icon: markerIcon,
-        draggable: true,
       });
       markersLayer.current.addLayer(mapMarker);
     });

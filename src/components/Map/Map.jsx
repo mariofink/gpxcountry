@@ -6,11 +6,12 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
   const osMap = useRef(null);
   const markersLayer = useRef(null);
   const lineLayer = useRef(null);
+
   // init map
   useEffect(() => {
-    if (osMap.current !== null) return; // if map has already been initialised
+    if (osMap.current !== null) return; // return if map has already been initialised
     // Setting tap to false to fix Safari issues (see: https://github.com/Leaflet/Leaflet/issues/7255)
-    osMap.current = map("leafletmap", { tap: false }).setView([lat, lng], 13);
+    osMap.current = map("leafletmap", { tap: false }).setView([lat, lng], 14);
     markersLayer.current = new LayerGroup();
     markersLayer.current.addTo(osMap.current);
     lineLayer.current = new LayerGroup();
@@ -24,11 +25,12 @@ const Map = ({ lat, lng, onClick, waypoints }) => {
       onClick(e.latlng);
     });
   }, [lat, lng, onClick]);
+
   // update map
   useEffect(() => {
     markersLayer.current.clearLayers();
     lineLayer.current.clearLayers();
-    waypoints.map((waypoint, index) => {
+    waypoints.forEach((waypoint, index) => {
       const markerIcon = divIcon({
         className: "map-marker text-white bg-gray-700",
         iconSize: [20, 20],

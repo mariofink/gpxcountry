@@ -4,6 +4,7 @@ let dragSource;
 
 const DraggableListItem = ({ children, index, onDrop }) => {
   const liElement = useRef(null);
+  const highlightClass = "bg-green-500";
   const handleDragStart = (e, index) => {
     e.nativeEvent.dataTransfer.effectAllowed = "move";
     dragSource = index;
@@ -12,17 +13,17 @@ const DraggableListItem = ({ children, index, onDrop }) => {
     if (e.nativeEvent.preventDefault) {
       e.nativeEvent.preventDefault(); // Allow dropping.
     }
-    liElement.current.classList.add("bg-green-500");
+    liElement.current.classList.add(highlightClass);
   };
   const handleDragLeave = () => {
-    liElement.current.classList.remove("bg-green-500");
+    liElement.current.classList.remove(highlightClass);
   };
   const handleDragEnd = () => {
-    liElement.current.classList.remove("bg-green-500");
+    liElement.current.classList.remove(highlightClass);
   };
   const handleDrop = (e, index, callback) => {
     callback({ source: dragSource, target: index });
-    liElement.current.classList.remove("bg-green-500");
+    liElement.current.classList.remove(highlightClass);
   };
   return (
     <li

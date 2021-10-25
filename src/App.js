@@ -12,14 +12,15 @@ function App() {
         <Waypoints
           list={waypoints}
           onDrop={(e) => {
-            console.log("onDrop", e);
             setWaypoints((prevWaypoints) =>
               arrayMoveImmutable(prevWaypoints, e.source, e.target)
             );
           }}
-          onRemove={(i) =>
+          onRemove={(indexToRemove) =>
             setWaypoints((prevWaypoints) => {
-              return prevWaypoints.filter((item, index) => index !== i);
+              return prevWaypoints.filter(
+                (item, index) => index !== indexToRemove
+              );
             })
           }
         />

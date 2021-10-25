@@ -1,14 +1,15 @@
 import { BinIcon, BurgerIcon } from "../Icons/Icons";
 import { createExport } from "../../utils/gpx";
+import DraggableListItem from "../DraggableListItem/DraggableListItem";
 
-const Waypoints = ({ list, onRemove }) => (
+const Waypoints = ({ list, onRemove, onDrop }) => (
   <div className="flex flex-col justify-between bg-gray-700 text-white p-4">
     <h1 className="text-2xl font-bold border-b-4 border-gray-500 my-2 py-2">
       Route Builder
     </h1>
     <ul className="py-8 flex-auto">
       {list.map((entry, index) => (
-        <li className="leading-10 font-bold flex gap-2">
+        <DraggableListItem index={index} onDrop={onDrop}>
           <button type="button" className="text-gray-500">
             <BurgerIcon />
           </button>
@@ -20,7 +21,7 @@ const Waypoints = ({ list, onRemove }) => (
           >
             <BinIcon />
           </button>
-        </li>
+        </DraggableListItem>
       ))}
     </ul>
     {list.length > 0 && (

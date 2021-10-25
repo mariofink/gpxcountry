@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "tailwindcss/dist/tailwind.css";
+import { arrayMoveImmutable } from "array-move";
 import Map from "./components/Map/Map";
 import Waypoints from "./components/Waypoints/Waypoints";
 
@@ -10,6 +11,12 @@ function App() {
       <div className="grid grid-cols-4 h-screen">
         <Waypoints
           list={waypoints}
+          onDrop={(e) => {
+            console.log("onDrop", e);
+            setWaypoints((prevWaypoints) =>
+              arrayMoveImmutable(prevWaypoints, e.source, e.target)
+            );
+          }}
           onRemove={(i) =>
             setWaypoints((prevWaypoints) => {
               return prevWaypoints.filter((item, index) => index !== i);

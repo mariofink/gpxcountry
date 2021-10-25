@@ -1,4 +1,4 @@
-export const createExport = (waypoints) => {
+export const generateXmlDoc = (waypoints) => {
   const xmlDoc = document.implementation.createDocument(
     "http://www.topografix.com/GPX/1/1",
     "",
@@ -15,6 +15,11 @@ export const createExport = (waypoints) => {
     gpx.appendChild(wpt);
   });
   xmlDoc.appendChild(gpx);
+  return xmlDoc;
+};
+
+export const createExport = (waypoints) => {
+  const xmlDoc = generateXmlDoc(waypoints);
   const serializer = new XMLSerializer();
   const xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="no" ?>${serializer.serializeToString(
     xmlDoc
